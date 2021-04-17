@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Crypto\" />
-    <Folder Include="Util\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CTFLibrary\CTFLibrary.csproj" />
   </ItemGroup>
 

@@ -4,7 +4,7 @@ using Xunit;
 
 using CTFLibrary;
 
-namespace CTFLibrary.Test
+namespace CTFLibrary.Math.Test
 {
     public class PowTest
     {
