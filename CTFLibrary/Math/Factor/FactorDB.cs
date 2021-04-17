@@ -10,6 +10,8 @@ namespace CTFLibrary
 {
     public static partial class MyMath
     {
+        public static int[] FactorWithFactorDB(this int value) => ((BigInteger)value).FactorWithFactorDB().Item1.Select(x => (int)x).ToArray();
+        public static long[] FactorWithFactorDB(this long value) => ((BigInteger)value).FactorWithFactorDB().Item1.Select(x => (long)x).ToArray();
         static readonly string[] successResult = { "FF", "P", "Unit" };
         public static (BigInteger[], bool) FactorWithFactorDB(this BigInteger value, bool doFactorize = true, bool allowIncompleteFactorize = false)
         {

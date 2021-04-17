@@ -10,6 +10,43 @@ namespace CTFLibrary
 {
     public ref partial struct Bytes
     {
+        public static Bytes operator +(Bytes a, Bytes b)
+        {
+            var len = Math.Min(a.Length, b.Length);
+            var res = new byte[len];
+            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] + b[i]);
+            return new Bytes(res);
+        }
+        public static Bytes operator -(Bytes a, Bytes b)
+        {
+            var len = Math.Min(a.Length, b.Length);
+            var res = new byte[len];
+            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] - b[i]);
+            return new Bytes(res);
+        }
+
+        public static Bytes operator ^(Bytes a, Bytes b)
+        {
+            var len = Math.Min(a.Length, b.Length);
+            var res = new byte[len];
+            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] ^ b[i]);
+            return new Bytes(res);
+        }
+        public static Bytes operator &(Bytes a, Bytes b)
+        {
+            var len = Math.Min(a.Length, b.Length);
+            var res = new byte[len];
+            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] & b[i]);
+            return new Bytes(res);
+        }
+        public static Bytes operator |(Bytes a, Bytes b)
+        {
+            var len = Math.Min(a.Length, b.Length);
+            var res = new byte[len];
+            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] | b[i]);
+            return new Bytes(res);
+        }
+
         public static bool operator ==(Bytes a, Bytes b) => a._data == b._data;
         public static bool operator !=(Bytes a, Bytes b) => a._data != b._data;
 

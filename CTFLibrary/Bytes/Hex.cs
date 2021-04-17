@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CTFLibrary
 {
-    static class Hex
+    public static class Hex
     {
         public static Bytes UnHexlify(this string s)
         {

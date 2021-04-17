@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CTFLibrary.Crypto
 {
-    static partial class Hash
+    public static partial class Hash
     {
         static readonly SHA512 sha512 = SHA512.Create();
         public static Bytes GetSHA512(this Bytes bytes) => sha512.ComputeHash(bytes);

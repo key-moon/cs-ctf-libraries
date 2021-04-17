@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CTFLibrary.Crypto
 {
-    static partial class Hash
+    public static partial class Hash
     {
         static MD5 md5 = MD5.Create();
         public static Bytes GetMD5(this Bytes bytes) => md5.ComputeHash(bytes);

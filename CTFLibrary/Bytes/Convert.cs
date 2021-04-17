@@ -18,5 +18,8 @@ namespace CTFLibrary
 
         public static BigInteger ToBigInteger(this Bytes bytes, ByteOrder order = ByteOrder.Little) => new BigInteger(bytes.AsSpan(), false, order == ByteOrder.Big);
         public static Bytes ToBytes(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => bigInt.ToByteArray(false, order == ByteOrder.Big);
+
+        public static BigInteger Unpack(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => ToBigInteger(bigInt, order);
+        public static Bytes Pack(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => ToBytes(bigInt, order);
     }
 }

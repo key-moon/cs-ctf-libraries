@@ -12,6 +12,8 @@ namespace CTFLibrary
 {
     public static partial class MyMath
     {
+        public static int[] FactorWithMSieve(this int value) => ((BigInteger)value).FactorWithMSieve().Select(x => (int)x).ToArray();
+        public static long[] FactorWithMSieve(this long value) => ((BigInteger)value).FactorWithMSieve().Select(x => (long)x).ToArray();
         public static BigInteger[] FactorWithMSieve(this BigInteger value)
         {
             if (310 <= value.ToString().Length) return FactorWithMSieveNFS(value);

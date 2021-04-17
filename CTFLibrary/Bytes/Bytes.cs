@@ -17,11 +17,13 @@ namespace CTFLibrary
 
         public int Length => _data.Length;
 
-        public Span<byte> Slice(int begin, int length) => _data.Slice(begin, length);
+        public Bytes Slice(int begin, int length) => new Bytes(_data.Slice(begin, length));
 
         public Span<byte>.Enumerator GetEnumerator() => _data.GetEnumerator();
         public Span<byte> AsSpan() => _data;
 
         public override string ToString() => BytesConverter.ToString(this);
+
+        public static Bytes FromSpan(Span<byte> data) => new Bytes(data);
     }
 }

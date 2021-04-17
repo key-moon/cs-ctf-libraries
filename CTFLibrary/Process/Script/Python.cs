@@ -14,7 +14,7 @@ namespace CTFLibrary
             var scriptPath = $"{Path.GetTempFileName()}.py";
             File.WriteAllText(scriptPath, script);
             if (args is not null) scriptPath = $"{scriptPath} {args}";
-            var pc = StartWithRedirects("python", scriptPath);
+            var pc = Start("python", scriptPath);
             if (input is not null) pc.StandardInput.Write(input);
             return pc;
         }
