@@ -16,12 +16,12 @@ namespace CTFLibrary.Utils.Test
         [Fact]
         public void ParseFromBaseKTest()
         {
-            Assert.Equal(10 * 11 + 10, "AA".ParseFromBaseK(11));
+            Assert.Equal(10 * 11 + 10, "aa".ParseFromBaseK(11));
         }
         [Fact]
         public void ToBaseKStringTest()
         {
-            Assert.Equal("AA", ((BigInteger)(10 * 11 + 10)).ToBaseKString(11));
+            Assert.Equal("aa", ((BigInteger)(10 * 11 + 10)).ToBaseKString(11));
         }
         [Fact]
         public void DecodeFromBase64Test()

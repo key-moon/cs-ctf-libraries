@@ -18,6 +18,7 @@ namespace CTFLibrary.Crypto.Test
         [Fact]
         public void Test()
         {
+            Config.Init();
             var lllRes = Data.LLLWithFplll();
             Assert.Equal(5, lllRes.Length);
             foreach (var row in lllRes) Assert.Equal(6, row.Length);

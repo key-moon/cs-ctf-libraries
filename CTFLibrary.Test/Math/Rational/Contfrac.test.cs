@@ -12,7 +12,8 @@ namespace CTFLibrary.Math.Test
         [Fact]
         public void Test()
         {
-            Assert.True(false);
+            var contfrac = new Rational(12, 67).ToContfrac().ToArray();
+            Assert.Equal(new BigInteger[] { 0, 5, 1, 1, 2, 2 }, contfrac);
         }
     }
 }

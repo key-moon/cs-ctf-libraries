@@ -12,7 +12,7 @@ namespace CTFLibrary.Math.Test
         public void Test()
         {
             BigInteger n = 2;
-            int exp = 127;
+            int exp = 100;
             var expect = BigInteger.Pow(n, exp);
             Assert.Equal(expect, n.Pow((int)exp));
             Assert.Equal(expect, n.Pow((long)exp));

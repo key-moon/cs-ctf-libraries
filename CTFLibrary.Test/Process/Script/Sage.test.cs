@@ -11,6 +11,7 @@ namespace CTFLibrary.Process.Test
         [Fact]
         public void StartSageTest()
         {
+            Config.Init();
             using var ps = ProcessUtil.StartSage("R.<x> = QQ[]\nprint(eval(input(\"in:\\n\")))");
             var out1 = ps.StandardOutput.ReadLine();
             Assert.Equal("in:", out1.Trim());
@@ -21,6 +22,7 @@ namespace CTFLibrary.Process.Test
         [Fact]
         public void ExecSageTest()
         {
+            Config.Init();
             var (output, err) = ProcessUtil.ExecSage(@"print(EllipticCurve(""5077a"").rank())");
             Assert.Equal("3", output.Trim());
             Assert.Equal("", err);

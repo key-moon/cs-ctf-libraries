@@ -2,85 +2,97 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net;
 
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 
 using Xunit;
+using System.Collections.Generic;
 
 namespace CTFLibrary.Web.Test
 {
     public class HTTPTest
     {
-        public void GetAsyncTest(string endPoint)
+        [Fact]
+        public void GetTest()
         {
-            Assert.True(false);
+            var res = HTTP.Get("http://httpbin.org/status/200");
+            Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         }
-        public void GetTest(string endPoint)
+        [Fact]
+        public void GetStringTest()
         {
-            Assert.True(false);
+            var res = HTTP.GetString("http://httpbin.org/base64/VEVTVAo=");
+            Assert.Equal("TEST\n", res);
         }
-
-        public void GetStringAsyncTest(string endPoint)
+        [Fact]
+        public void GetJsonTest()
         {
-            Assert.True(false);
+            var res = HTTP.GetJson<Result>("http://httpbin.org/json");
+            Assert.Equal("Yours Truly", res.slideshow.author);
         }
-        public void GetStringTest(string endPoint)
+        [Fact]
+        public void GetHtmlTest()
         {
-            Assert.True(false);
-        }
-
-        public void GetJsonAsyncTest(string endPoint, JsonSerializerOptions options = null)
-        {
-            Assert.True(false);
-        }
-        public void GetJsonTest(string endPoint, JsonSerializerOptions options = null)
-        {
-            Assert.True(false);
-        }
-        public void GetHtmlAsyncTest(string endPoint)
-        {
-            Assert.True(false);
-        }
-        public void GetHtmlTest(string endPoint)
-        {
-            Assert.True(false);
+            var res = HTTP.GetHtml("http://httpbin.org/html");
+            Assert.Equal("Herman Melville - Moby-Dick", res.GetElementsByTagName("h1")[0].TextContent);
         }
 
-        public void PostAsyncTest(string endPoint, HttpContent content)
+        [Fact]
+        public void PostTest()
         {
-            Assert.True(false);
-        }
-        public void PostTest(string endPoint, HttpContent content)
-        {
-            Assert.True(false);
+            var res = HTTP.Post("http://httpbin.org/status/200", null);
+            Assert.Equal(HttpStatusCode.OK, res.StatusCode);
         }
 
-        public void PostToGetStringAsyncTest(string endPoint, HttpContent content)
+        [Fact]
+        public void PostToGetStringTest()
         {
-            Assert.True(false);
-        }
-        public void PostToGetStringTest(string endPoint, HttpContent content)
-        {
-            Assert.True(false);
+            var res = HTTP.PostToGetString("http://httpbin.org/status/418", null);
+            Assert.Contains("teapot", res);
         }
 
-        public void PostToGetJsonAsyncTest(string endPoint, HttpContent content)
+        [Fact]
+        public void PostToGetJsonTest()
         {
-            Assert.True(false);
-        }
-        public void PostToGetJsonTest(string endPoint, HttpContent content)
-        {
-            Assert.True(false);
+            var res = HTTP.PostToGetJson<AnythingResult>("http://httpbin.org/anything", new JsonContent<Content>(new Content()));
+            Assert.True(res.json.ContainsKey("A"));
+            Assert.Equal("B", res.json["A"]);
         }
 
-        public void PostToGetHtmlAsyncTest(string endPoint, HttpContent content)
+        [Fact]
+        public void PostToGetHtmlTest()
         {
-            Assert.True(false);
-        }
-        public void PostToGetHtmlTest(string endPoint, HttpContent content)
-        {
-            Assert.True(false);
+            var res = HTTP.PostToGetHtml("http://httpbin.org", null);
+            Assert.Equal("405 Method Not Allowed", res.Title);
         }
     }
+    class Content
+    {
+        public string A => "B";
+    }
+    class AnythingResult
+    {
+        public Dictionary<string, string> json { get; set; }
+    }
+
+    class Result
+    {
+        public SlideShow slideshow { get; set; }
+    }
+    class SlideShow
+    {
+        public string author { get; set; }
+        public string date { get; set; }
+        public Slide[] slides { get; set; }
+    }
+    class Slide
+    {
+        public string title { get; set; }
+        public string type { get; set; }
+        public string[] items { get; set; }
+    }
 }
+
+

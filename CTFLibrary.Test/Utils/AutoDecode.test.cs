@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
 using System.Numerics;
 using Xunit;
 
 using CTFLibrary;
 
-namespace CTFLibrary.Crypto.Test
+namespace CTFLibrary.Utils.Test
 {
-    public class ArchiveTest
+    public class AutoDecodeTest
     {
-        [Fact]
-        public void TryUnZipTest()
+        //[Fact]
+        public void Test()
         {
             Assert.True(false);
         }

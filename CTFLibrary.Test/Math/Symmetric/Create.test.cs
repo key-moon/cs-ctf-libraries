@@ -13,7 +13,13 @@ namespace CTFLibrary.Math.Test
         [Fact]
         public void Test()
         {
-            Assert.True(false);
+            var sym = Symmetric.Create(new int[] { 1, 2, 3, 0 });
+            Assert.Equal(4, sym.Size);
+            Assert.Equal(1, sym[0]);
+            Assert.Equal(2, sym[1]);
+            Assert.Equal(3, sym[2]);
+            Assert.Equal(0, sym[3]);
+            Assert.Throws<ArgumentException>(() => Symmetric.Create(new int[] { 1, 2, 3, 4 }));
         }
     }
 }

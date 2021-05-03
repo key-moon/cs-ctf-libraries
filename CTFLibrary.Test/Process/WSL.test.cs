@@ -14,8 +14,7 @@ namespace CTFLibrary.Process.Test
             using var ps = ProcessUtil.StartOnWSL("read A B ; echo $((A*B))");
             ps.StandardInput.Write("123 456\n");
             var out1 = ps.StandardOutput.ReadLine();
-            var err = ps.StandardError.ReadToEnd();
-            Assert.Contains("56088", out1 + err);
+            Assert.Contains("56088", out1);
         }
         [Fact]
         public void ExecOnWSLTest()

@@ -10,8 +10,9 @@ namespace CTFLibrary.Math.Test
     public class FactorTest
     {
         [Fact]
-        public void MSieve()
+        public void MSieveTest()
         {
+            Config.Init();
             var b = BigInteger.Parse("3141592653589793238");
             var factors = b.FactorWithMSieve();
             foreach (var item in factors)
@@ -23,7 +24,7 @@ namespace CTFLibrary.Math.Test
             Assert.Equal(1, b);
         }
         [Fact]
-        public void FactorDB()
+        public void FactorDBTest()
         {
             var b = BigInteger.Parse("3141592653589793238");
             var (factors, state) = b.FactorWithFactorDB();

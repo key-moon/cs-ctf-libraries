@@ -14,7 +14,7 @@ namespace CTFLibrary.Crypto.Test
         {
             var rsa = new RSA(42667, 64741);
             Assert.True(rsa.Wiener());
-            Assert.Equal(64741, rsa.p * rsa.q);
+            Assert.Equal(64741, rsa.P * rsa.Q);
         }
     }
 }

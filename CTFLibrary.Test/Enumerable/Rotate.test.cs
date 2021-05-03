@@ -13,9 +13,13 @@ namespace CTFLibrary.Enumerable.Test
         public void Test()
         {
             var left2 = new[] { 1, 2, 3, 4, 5, 6 }.RotateLeft(2).ToArray();
+            var leftm2 = new[] { 1, 2, 3, 4, 5, 6 }.RotateLeft(-2).ToArray();
             var right2 = new[] { 1, 2, 3, 4, 5, 6 }.RotateRight(2).ToArray();
+            var rightm2 = new[] { 1, 2, 3, 4, 5, 6 }.RotateRight(-2).ToArray();
             Assert.Equal(left2, new[] { 3, 4, 5, 6, 1, 2 });
+            Assert.Equal(leftm2, new[] { 5, 6, 1, 2, 3, 4 });
             Assert.Equal(right2, new[] { 5, 6, 1, 2, 3, 4 });
+            Assert.Equal(rightm2, new[] { 3, 4, 5, 6, 1, 2 });
         }
     }
 }
