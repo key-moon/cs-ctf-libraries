@@ -13,8 +13,8 @@ namespace CTFLibrary
     {
         public static Symmetric Identity(int n) => new Symmetric(Enumerable.Range(0, n).ToArray());
         public static Symmetric Reverse(int n) => new Symmetric(Enumerable.Range(0, n).Reverse().ToArray());
-        public static Symmetric RotateLeft(int n, int i) => new Symmetric(Enumerable.Range(0, n).Reverse().RotateRight(i).ToArray());
-        public static Symmetric RotateRight(int n, int i) => new Symmetric(Enumerable.Range(0, n).Reverse().RotateLeft(i).ToArray());
+        public static Symmetric RotateLeft(int n, int i) => new Symmetric(Enumerable.Range(0, n).RotateRight(i).ToArray());
+        public static Symmetric RotateRight(int n, int i) => new Symmetric(Enumerable.Range(0, n).RotateLeft(i).ToArray());
     }
 }
 

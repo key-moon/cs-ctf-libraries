@@ -29,12 +29,20 @@ namespace CTFLibrary
         public static HttpResponseMessage Post(string endPoint, HttpContent content) => PostAsync(endPoint, content).Result;
 
         public static async Task<string> PostToGetStringAsync(string endPoint, HttpContent content) => await (await PostAsync(endPoint, content)).Content.ReadAsStringAsync();
-        public static string PostToGetString(string endPoint, HttpContent content) => PostToGetStringAsync(endPoint, content).Result
+        public static string PostToGetString(string endPoint, HttpContent content) => PostToGetStringAsync(endPoint, content).Result;
 
-        public static async Task<T> PostToGetJsonAsync<T>(string endPoint, HttpContent content) => JsonSerializer.Deserialize<T>(await PostToGetStringAsync(endPoint, content));
+        public static async Task<T> PostToGetJsonAsync<T>(string endPoint, HttpContent content)
+        {
+            var res = await PostToGetStringAsync(endPoint, content);
+            return JsonSerializer.Deserialize<T>(res);
+        }
         public static T PostToGetJson<T>(string endPoint, HttpContent content) => PostToGetJsonAsync<T>(endPoint, content).Result;
 
-        public static async Task<IHtmlDocument> PostToGetHtmlAsync(string endPoint, HttpContent content) => Parser.ParseDocument(await PostToGetStringAsync(endPoint, content));
+        public static async Task<IHtmlDocument> PostToGetHtmlAsync(string endPoint, HttpContent content)
+        {
+            var res = await PostToGetStringAsync(endPoint, content);
+            return Parser.ParseDocument(res);
+        }
         public static IHtmlDocument PostToGetHtml(string endPoint, HttpContent content) => PostToGetHtmlAsync(endPoint, content).Result;
     }
 }

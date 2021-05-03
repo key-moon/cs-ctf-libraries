@@ -6,22 +6,24 @@ using System.Text;
 
 namespace CTFLibrary
 {
-    public class StreamWrapper : IDisposable
+    public partial class StreamWrapper : IDisposable
     {
-        public static bool DefaultAutoFlush = true;
+        public static bool DefaultAutoFlush { get; set; } = true;
+        public static string DefaultNewLine { get; set; } = "\n";
+        public static Encoding DefaultEncoding { get; set; } = Encoding.Default;
 
         private Stream _BaseStream;
         public Stream BaseStream
         {
             get => _BaseStream;
-            set
+            private set
             {
-                Reader = new StreamReader(value);
-                Writer = new StreamWriter(value) { AutoFlush = DefaultAutoFlush };
+                Reader = new StreamReader(value, DefaultEncoding);
+                Writer = new StreamWriter(value, DefaultEncoding) { AutoFlush = DefaultAutoFlush, NewLine = DefaultNewLine };
                 _BaseStream = value;
             }
         }
-        public Encoding Encoding => Reader.CurrentEncoding == Writer.Encoding ? Writer.Encoding : throw new Exception();
+        public Encoding Encoding { get; }
 
         public StreamReader Reader { get; private set; }
         public bool EndOfStream => Reader.EndOfStream;
@@ -31,7 +33,8 @@ namespace CTFLibrary
         public string NewLine { get => Writer.NewLine; set => Writer.NewLine = value; }
         public IFormatProvider FormatProvider => Writer.FormatProvider;
         
-        public StreamWrapper(Stream stream) { BaseStream = stream; }
+        public StreamWrapper(Stream stream) : this(stream, DefaultEncoding) { }
+        public StreamWrapper(Stream stream, Encoding encoding) { Encoding = encoding; BaseStream = stream; }
 
         public char Read() => (char)Reader.Read();
         public string Read(int n)
@@ -57,11 +60,25 @@ namespace CTFLibrary
         public string ReadToEnd() => Reader.ReadToEnd();
         public char Peek() => (char)Reader.Peek();
 
-        public void Write(object o) => Writer.Write(o);
-        public void Write(string o) => Writer.Write(o);
-        public void WriteLine(object o) => Writer.WriteLine(o);
-        public void WriteLine(string o) => Writer.WriteLine(o);
+        public void Write(object obj) => Writer.Write(obj);
+        public void Write(string s) => Writer.Write(s);
+        public string WriteAfter(string nxt, object obj) { var res = ReadUntil(nxt); Write(obj); return res; }
+        public string WriteAfter(string nxt, string s) { var res = ReadUntil(nxt); Write(s); return res; }
+        public void WriteLine(object obj) => Writer.WriteLine(obj);
+        public void WriteLine(string s) => Writer.WriteLine(s);
+        public string WriteLineAfter(string nxt, object obj) { var res = ReadUntil(nxt); WriteLine(obj); return res; }
+        public string WriteLineAfter(string nxt, string s) { var res = ReadUntil(nxt); WriteLine(s); return res; }
         public void Flush() => Writer.Flush();
+        
+        public void Interactive()
+        {
+            while (true)
+            {
+                while (!EndOfStream) Console.Write(Reader.ReadToEnd());
+                Writer.WriteLine(Console.ReadLine());
+            }
+        }
+
         public void Dispose()
         {
             BaseStream.Dispose();

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CTFLibrary.Crypto
+namespace CTFLibrary
 {
     public static partial class Hash
     {

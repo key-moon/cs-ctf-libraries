@@ -13,8 +13,6 @@ namespace CTFLibrary
     {
         public static Symmetric operator *(Symmetric a, Symmetric b) => Operate(a, b);
         public static Symmetric operator /(Symmetric a, Symmetric b) => Operate(a, b.Inverse());
-        public static Symmetric operator <<(Symmetric a, int i) => a * RotateLeft(a.Size, i);
-        public static Symmetric operator >>(Symmetric a, int i) => a * RotateRight(a.Size, i);
 
         public static sbyte[] operator *(sbyte[] a, Symmetric b) => Operate(a, b);
         public static byte[] operator *(byte[] a, Symmetric b) => Operate(a, b);
@@ -26,8 +24,22 @@ namespace CTFLibrary
         public static ulong[] operator *(ulong[] a, Symmetric b) => Operate(a, b);
         public static BigInteger[] operator *(BigInteger[] a, Symmetric b) => Operate(a, b);
         public static string[] operator *(string[] a, Symmetric b) => Operate(a, b);
+        public static Bytes[] operator *(Bytes[] a, Symmetric b) => Operate(a, b);
         public static Bytes operator *(Bytes bytes, Symmetric b) => Operate(bytes.ToByteArray(), b);
 
+        public static sbyte[] operator /(sbyte[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static byte[] operator /(byte[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static short[] operator /(short[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static ushort[] operator /(ushort[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static int[] operator /(int[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static uint[] operator /(uint[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static long[] operator /(long[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static ulong[] operator /(ulong[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static BigInteger[] operator /(BigInteger[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static string[] operator /(string[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static Bytes[] operator /(Bytes[] a, Symmetric b) => Operate(a, b.Inverse());
+        public static Bytes operator /(Bytes bytes, Symmetric b) => Operate(bytes.ToByteArray(), b.Inverse());
+        
         public static T[] Operate<T>(T[] arr, Symmetric op)
         {
             if (arr.Length != op.Size) throw new ArgumentException($"operator size should be equal with array length({arr.Length})", nameof(op));

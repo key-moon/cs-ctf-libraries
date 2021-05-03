@@ -11,7 +11,7 @@ namespace CTFLibrary
 {
     public partial class Symmetric
     {
-        int Size => Permute.Length;
+        public int Size => Permute.Length;
         readonly int[] Permute;
         private Symmetric(int[] permute) { Permute = permute; }
 

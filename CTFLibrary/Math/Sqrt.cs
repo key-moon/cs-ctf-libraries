@@ -11,13 +11,12 @@ namespace CTFLibrary
 {
     public static partial class MyMath
     {
-        public static bool Sqrt(this int value)
+        public static int Sqrt(this int value) => (int)Math.Sqrt(value);
+        public static long Sqrt(this long value)
         {
-            throw new NotImplementedException();
-        }
-        public static bool Sqrt(this long value)
-        {
-            throw new NotImplementedException();
+            var sq = (long)Math.Round(Math.Sqrt(value));
+            while (value < sq * sq) sq--;
+            return sq;
         }
         // TODO: はやいやつを実装する
         public static BigInteger Sqrt(this BigInteger n)

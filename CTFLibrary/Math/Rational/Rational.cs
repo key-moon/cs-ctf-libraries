@@ -12,7 +12,13 @@ namespace CTFLibrary
 
         public Rational(BigInteger numerator, BigInteger denominator)
         {
-            var gcd = BigInteger.GreatestCommonDivisor(numerator, denominator);
+            if (denominator == 0) throw new Exception();
+            if (denominator < 0)
+            {
+                numerator = BigInteger.Negate(numerator);
+                denominator = BigInteger.Negate(denominator);
+            }
+            var gcd = BigInteger.GreatestCommonDivisor(BigInteger.Abs(numerator), denominator);
             Numerator = numerator / gcd;
             Denominator = denominator / gcd;
         }

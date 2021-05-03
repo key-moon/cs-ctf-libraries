@@ -16,7 +16,7 @@ namespace CTFLibrary
             // "temprary" solution. set working directory to login shell is cleaner.
             var cmd = $"/tmp/{Path.GetFileName(scriptPath)}";
             if (args is not null) cmd += $" {args}";
-            var pc = Start(MyPath.SageBash, $"--login -c '/opt/sagemath-9.0/sage {cmd}'");
+            var pc = Start(BinPath.SageBash, $"--login -c '/opt/sagemath-9.0/sage {cmd}'");
             if (input is not null) pc.StandardInput.Write(input);
             return pc;
         }
