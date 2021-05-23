@@ -10,7 +10,7 @@ namespace CTFLibrary
     {
         public static string ToPrintable(this string bytes, char replace = ' ')
         {
-            return bytes.Select(x => Const.PrintableLetters.Contains(x) ? x : replace).Join();
+            return bytes.Select(x => Const.UnPrintableASCIILetters.Contains(x) ? replace : x).Join();
         }
     }
 }

@@ -22,7 +22,8 @@ namespace CTFLibrary
             public static readonly string Desktop = $"{Home}/Desktop";
             public static readonly string Downloads = $"{Home}/Downloads";
             public static readonly string AppData = $"{Home}/AppData";
-            public static readonly string Bin = $"{Document}/bin";
+            public static readonly string CTFDir = $"{Home}/CTF";
+            public static readonly string Bin = $"{CTFDir}/bin";
 
             public static string MSieve = $"{Bin}/msieve/msieve.exe";
             public static string Fplll = $"{Bin}/fplll/fplll/fplll";

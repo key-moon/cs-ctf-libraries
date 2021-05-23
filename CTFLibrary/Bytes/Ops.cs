@@ -11,20 +11,8 @@ namespace CTFLibrary
 {
     partial struct Bytes
     {
-        public static Bytes operator +(Bytes a, Bytes b)
-        {
-            var len = Math.Min(a.Length, b.Length);
-            var res = new byte[len];
-            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] + b[i]);
-            return new Bytes(res);
-        }
-        public static Bytes operator -(Bytes a, Bytes b)
-        {
-            var len = Math.Min(a.Length, b.Length);
-            var res = new byte[len];
-            for (int i = 0; i < len; i++) res[i] = (byte)(a[i] - b[i]);
-            return new Bytes(res);
-        }
+        public static Bytes operator +(Bytes a, Bytes b) => new(a.Concat(b).ToArray());
+        public static Bytes operator *(Bytes a, int times) => new(Enumerable.Repeat(a, times).SelectMany(x => x).ToArray());
 
         public static Bytes operator ^(Bytes a, Bytes b)
         {

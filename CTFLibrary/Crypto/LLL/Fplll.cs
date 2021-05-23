@@ -10,7 +10,7 @@ namespace CTFLibrary
     {
         private static string CallFplll(string input, string flag)
         {
-            var (res, err) = ProcessUtil.ExecOnWSL(BinPath.Fplll, flag, input, Encoding.ASCII);
+            var (res, err) = ProcessUtil.ExecOnWSL(BinPath.Fplll, flag, input, Encoding.UTF8);
             if (1 < err.Length) throw new Exception(err);
             return res;
         }

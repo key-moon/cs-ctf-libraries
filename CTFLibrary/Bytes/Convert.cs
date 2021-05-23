@@ -19,8 +19,8 @@ namespace CTFLibrary
         public static byte[] ToByteArray(this Bytes bytes) => bytes;
         public static Bytes ToBytes(this byte[] byteArray) => byteArray;
 
-        public static string ToString(this Bytes bytes, Encoding encoding = null) => (encoding ?? Encoding.ASCII).GetString(bytes);
-        public static Bytes ToBytes(this string byteArray, Encoding encoding = null) => (encoding ?? Encoding.ASCII).GetBytes(byteArray);
+        public static string ToString(this Bytes bytes, Encoding encoding = null) => (encoding ?? MyEncoding.Raw).GetString(bytes);
+        public static Bytes ToBytes(this string byteArray, Encoding encoding = null) => (encoding ?? MyEncoding.Raw).GetBytes(byteArray);
 
         public static BigInteger ToBigInteger(this Bytes bytes, ByteOrder order = ByteOrder.Little) => new BigInteger(bytes.AsSpan(), true, order == ByteOrder.Big);
         public static Bytes ToBytes(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => bigInt.ToByteArray(order);
@@ -29,8 +29,8 @@ namespace CTFLibrary
         public static BigInteger ToBigInteger(this byte[] byteArray, ByteOrder order = ByteOrder.Little) => new BigInteger(byteArray, isBigEndian: order == ByteOrder.Big);
         public static byte[] ToByteArray(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => bigInt.ToByteArray(true, order == ByteOrder.Big);
 
-        public static string ToString(this byte[] bytes, Encoding encoding = null) => (encoding ?? Encoding.ASCII).GetString(bytes);
-        public static byte[] ToByteArray(this string s, Encoding encoding = null) => (encoding ?? Encoding.ASCII).GetBytes(s);
+        public static string ToString(this byte[] bytes, Encoding encoding = null) => (encoding ?? MyEncoding.Raw).GetString(bytes);
+        public static byte[] ToByteArray(this string s, Encoding encoding = null) => (encoding ?? MyEncoding.Raw).GetBytes(s);
 
         // Alias
         public static BigInteger Unpack(this BigInteger bigInt, ByteOrder order = ByteOrder.Little) => ToBigInteger(bigInt, order);

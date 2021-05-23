@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CTFLibrary
 {
-    public partial struct Bytes
+    public partial struct Bytes : IEnumerable<byte>
     {
         private byte[] _data;   
         private Bytes(Span<byte> data) { _data = data.ToArray(); }
@@ -22,11 +22,13 @@ namespace CTFLibrary
 
         public Bytes Slice(int begin, int length) => new Bytes(_data.AsSpan().Slice(begin, length));
 
-        public IEnumerator GetEnumerator() => _data.GetEnumerator();
         public Span<byte> AsSpan() => _data;
 
         public override string ToString() => BytesConverter.ToString(this);
 
         public static Bytes FromSpan(Span<byte> data) => new Bytes(data);
+
+        IEnumerator<byte> IEnumerable<byte>.GetEnumerator() => ((IEnumerable<byte>)_data).GetEnumerator();
+        public IEnumerator GetEnumerator() => _data.GetEnumerator();
     }
 }

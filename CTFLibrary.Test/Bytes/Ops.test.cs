@@ -15,19 +15,22 @@ namespace CTFLibrary.BytesTest
             Bytes a = Bytes.FromSpan(new byte[] { 1, 131 });
             Bytes b = Bytes.FromSpan(new byte[] { 3, 132 });
             var c = a + b;
-            Assert.Equal(2, c.Length);
-            Assert.Equal(4, c[0]);
-            Assert.Equal(7, c[1]);
+            Assert.Equal(4, c.Length);
+            Assert.Equal(1, c[0]);
+            Assert.Equal(131, c[1]);
+            Assert.Equal(3, c[2]);
+            Assert.Equal(132, c[3]);
         }
         [Fact]
-        public void SubTest()
+        public void MulTest()
         {
-            Bytes a = Bytes.FromSpan(new byte[] { 3, 1 });
-            Bytes b = Bytes.FromSpan(new byte[] { 1, 3 });
-            var c = a - b;
-            Assert.Equal(2, c.Length);
-            Assert.Equal(2, c[0]);
-            Assert.Equal(254, c[1]);
+            Bytes a = Bytes.FromSpan(new byte[] { 1, 131 });
+            var c = a * 2;
+            Assert.Equal(4, c.Length);
+            Assert.Equal(1, c[0]);
+            Assert.Equal(131, c[1]);
+            Assert.Equal(1, c[2]);
+            Assert.Equal(131, c[3]);
         }
         [Fact]
         public void XorTest()

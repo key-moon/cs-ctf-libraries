@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace CTFLibrary
 {
@@ -17,5 +18,8 @@ namespace CTFLibrary
         public static StreamWrapper FromFile(string fileName) => new StreamWrapper(new FileStream(fileName, FileMode.Append, FileAccess.ReadWrite));
 
         public static StreamWrapper FromExecutable(string path) => new StreamWrapper(ProcessUtil.Start(path).GetStream());
+
+        public static StreamWrapper FromLinuxExecutable(string path) => new StreamWrapper(ProcessUtil.StartOnWSL(path).GetStream());
+        public static StreamWrapper FromProcess(Process process) => new StreamWrapper(process.GetStream());
     }
 }
