@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CTFLibrary
 {
-    public static partial class Utils
+    public static partial class Util
     {
         public static (string res, string converters) AutoDecode(this Bytes bytes)
         {

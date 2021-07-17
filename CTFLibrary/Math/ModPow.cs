@@ -11,6 +11,10 @@ namespace CTFLibrary
 {
     public static partial class MyMath
     {
+        public static BigInteger ModPow(this int value, int exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
+        public static BigInteger ModPow(this long value, int exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
         public static BigInteger ModPow(this BigInteger value, int exp, BigInteger mod)
         {
             BigInteger pow = value;
@@ -23,6 +27,11 @@ namespace CTFLibrary
             }
             return res;
         }
+
+        public static BigInteger ModPow(this int value, long exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
+        public static BigInteger ModPow(this long value, long exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
         public static BigInteger ModPow(this BigInteger value, long exp, BigInteger mod)
         {
             BigInteger pow = value;
@@ -35,10 +44,13 @@ namespace CTFLibrary
             }
             return res;
         }
+
+        public static BigInteger ModPow(this int value, BigInteger exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
+        public static BigInteger ModPow(this long value, BigInteger exp, BigInteger mod)
+            => ModPow((BigInteger)value, exp, mod);
         public static BigInteger ModPow(this BigInteger value, BigInteger exp, BigInteger mod)
-        {
-            return BigInteger.ModPow(value, exp, mod);
-        }
+            => BigInteger.ModPow(value, exp, mod);
     }
 }
 

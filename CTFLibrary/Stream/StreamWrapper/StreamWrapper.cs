@@ -58,6 +58,7 @@ namespace CTFLibrary
             while (!data.TakeLast(n).SequenceEqual(s)) data.Add(Read());
             return string.Join("", data);
         }
+        public string ReadLineAfter(string s) { ReadUntil(s); return Reader.ReadLine(); }
         public string ReadToEnd() => Reader.ReadToEnd();
         public char Peek() => (char)Reader.Peek();
 

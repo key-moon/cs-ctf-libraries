@@ -11,8 +11,8 @@ namespace CTFLibrary
     {
         public BigInteger Mod { get; }
     }
-    public struct StaticMod998244353 { public BigInteger Mod => 998244353; }
-    public struct StaticMod1000000007 { public BigInteger Mod => 1000000007; }
+    public struct StaticMod998244353 : IMod { public BigInteger Mod => 998244353; }
+    public struct StaticMod1000000007 : IMod { public BigInteger Mod => 1000000007; }
 
     public struct DynamicMod1 : IMod { public static BigInteger MOD; public BigInteger Mod => MOD; }
     public struct DynamicMod2 : IMod { public static BigInteger MOD; public BigInteger Mod => MOD; }

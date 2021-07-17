@@ -28,7 +28,7 @@ namespace CTFLibrary
         public static Matrix<T, OpT> DiagonalMatrix(int n, T val)
         {
             var res = new Matrix<T, OpT>(n, n);
-            for (int i = 0; i < n; i++) res[i, i] = TOne;
+            for (int i = 0; i < n; i++) res[i, i] = val;
             return res;
         }
         public static Matrix<T, OpT> Add(Matrix<T, OpT> a, Matrix<T, OpT> b)

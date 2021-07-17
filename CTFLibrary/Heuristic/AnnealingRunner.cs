@@ -15,7 +15,8 @@ namespace CTFLibrary
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="max">考えられるスコアの最大値-最小値</param>
+        /// <param name="maxTemp">考えられるスコアの最大値</param>
+        /// <param name="minTemp">考えられるスコアの最小値</param>
         /// <param name="seed"></param>
         public AnnealingRunner(double maxTemp, double minTemp, ulong seed = 0)
         {

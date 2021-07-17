@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CTFLibrary
 {
-    public static partial class Utils
+    public static partial class Util
     {
         public static string ToPrintable(this string bytes, char replace = ' ')
         {
